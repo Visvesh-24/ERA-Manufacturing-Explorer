@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>ERA Manufacturing Explorer</title>
+    <meta name="description" content="Explore a 3D manufacturing campus and see the operating expenses ERA Group can review with your team." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="app" id="app" tabindex="0" aria-label="ERA Manufacturing Explorer: interactive 3D campus" aria-describedby="app-help">
+      <h1 class="visually-hidden">ERA Manufacturing Explorer</h1>
+      <p id="app-help" class="visually-hidden">An interactive 3D manufacturing campus. Use the sector list or the markers to open details about each area ERA Group can review. Arrow keys move the view, plus and minus zoom, Escape closes a card.</p>
+
+      <div class="markers" id="markers"></div>
+      <svg class="leader" id="leader" aria-hidden="true" hidden><path d=""></path><circle r="4"></circle></svg>
+
+      <div class="hud hud-tl">
+        <div class="badge"><img src="/era-group-logo.png" width="468" height="243" alt="ERA Group" /></div>
+        <div class="drawer" id="drawer">
+          <button type="button" class="drawer-toggle" id="drawer-toggle" aria-expanded="false" aria-controls="drawer-panel">
+            <span>Sectors</span><span class="drawer-count">16</span>
+          </button>
+          <div class="drawer-panel" id="drawer-panel" hidden>
+            <ul class="drawer-list" id="drawer-list"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud hud-tr" role="group" aria-label="Map controls">
+        <button type="button" class="tool tool-wide" id="how" aria-haspopup="dialog"><span>How ERA works</span></button>
+        <button type="button" class="tool tool-wide" id="lens" aria-pressed="false"><span>Review lens</span></button>
+        <button type="button" class="tool" id="zoom-in" aria-label="Zoom in"></button>
+        <button type="button" class="tool" id="zoom-out" aria-label="Zoom out"></button>
+        <button type="button" class="tool" id="view-start" aria-label="Back to the start view"></button>
+        <button type="button" class="tool" id="view-whole" aria-label="Show the whole site"></button>
+        <button type="button" class="tool" id="motion" aria-pressed="false" aria-label="Pause motion"></button>
+      </div>
+
+      <div class="hud hud-br">
+        <canvas class="minimap" id="minimap" width="420" height="260" aria-label="Minimap: select a point to move there" role="img"></canvas>
+      </div>
+
+      <p class="hud lens-legend" id="lens-legend" hidden>Highlighted: areas where ERA can review spend with you. Relevant areas depend on your organization.</p>
+      <p class="hud hint" id="hint">Two-finger scroll or drag to move · pinch to zoom · click anything</p>
+
+      <section class="pop" id="pop" role="dialog" aria-modal="false" aria-labelledby="pop-title" hidden></section>
+
+      <section class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="ov-title" hidden>
+        <div class="ov-card">
+          <div class="ov-head">
+            <h2 id="ov-title">How ERA works with your team</h2>
+            <button type="button" class="ov-x" id="ov-x" aria-label="Close"></button>
+          </div>
+          <ul class="parties">
+            <li><span class="party-dot" data-party="client"></span>Your team decides</li>
+            <li><span class="party-dot" data-party="era"></span>ERA reviews and supports</li>
+            <li><span class="party-dot" data-party="suppliers"></span>Suppliers deliver what is agreed</li>
+          </ul>
+          <ol class="steps" id="steps"></ol>
+          <div class="step-detail" id="step-detail" aria-live="polite"></div>
+          <div class="methods-wrap">
+            <p class="methods-title">Methods ERA may use</p>
+            <ul class="methods" id="methods"></ul>
+          </div>
+          <div class="ov-foot">
+            <p>Price is one factor, alongside service, quality, specifications, and continuity. Sectors shown are examples; relevant areas depend on your organization.</p>
+            <p class="next"><span>Talk with ERA Group</span><span class="next-domain">eragroup.com</span></p>
+          </div>
+        </div>
+      </section>
+
+      <div class="loader" id="loader" aria-hidden="true"><img src="/era-group-logo.png" width="468" height="243" alt="" /><span>Building the campus…</span></div>
+      <p class="nogl" id="nogl" hidden>This experience needs WebGL. Please open it in an up-to-date browser with hardware acceleration turned on.</p>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

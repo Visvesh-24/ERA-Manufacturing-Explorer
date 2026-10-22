@@ -1,0 +1,21 @@
+{
+  "name": "era-explainer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "validate": "html-validate index.html",
+    "check": "npm run validate && npm run build",
+    "single": "vite build && node scripts/single-file.mjs"
+  },
+  "devDependencies": {
+    "html-validate": "^9.0.0",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "three": "^0.169.0"
+  }
+}
